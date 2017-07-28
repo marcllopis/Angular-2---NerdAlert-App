@@ -1,0 +1,201 @@
+<div style="height:70px;"></div>
+
+<div class="container container-custom">
+  <div class="row">
+    <div class="col-md-3">
+      <!-- FOTO -->
+      <img class="img-responsive img-circle img-helper-custom" [src]="user.profilePic">
+
+    </div>
+    <div class="col-md-9">
+      <!-- SLOGAN + ADDRESS AND BUTTON -->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- SLOGAN -->
+          <h3>{{ user.slogan }} <span style="float:right;">€{{ user.price }} <span class="small">/hour</span></span></h3>
+          <h4></h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <!-- ADDRESS -->
+          <h5 style="line-height:20px;">{{ user.address }} &nbsp;&nbsp;<img style="width:10px; height:auto;" src="http://www.clker.com/cliparts/B/l/M/x/J/M/map-pin-red-hi.png" alt=""></h5>
+
+        </div>
+        <div class="col-md-4">
+          <!-- PRICE -->
+          <h4></h4>
+
+        </div>
+        <div class="col-md-4">
+          <!-- BUTTON TO BOOK --> <br>
+          <button class="btn btn-primary" style="float:right;" (click)="lgModal.show()">Contact {{ user.name }}</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ user.name }} </h4>
+    </div>
+    <div class="col-md-9">
+      <ul>
+        <div *ngFor="let speciality of user.speciality">
+          <li style="display:inline;">
+            <span *ngIf="speciality === 'Computer'"><img class="icon-custom" src="http://localhost:3000/icons/computer.png" alt="computer"></span>
+            <span *ngIf="speciality === 'Internet'"><img class="icon-custom" src="http://localhost:3000/icons/internet.png" alt="internet"></span>
+            <span *ngIf="speciality === 'Phone'"><img class="icon-custom" src="http://localhost:3000/icons/phone.png" alt="phone"></span>
+            <span *ngIf="speciality === 'TV'"><img class="icon-custom" src="http://localhost:3000/icons/tv.png" alt="tv"></span>
+
+
+          </li>
+        </div>
+      </ul><br>
+      <rating style= "color: #ffd081; font-size: 18px;" [(ngModel)]="rate" [max]="max" [readonly]="true"></rating><span>{{reviews.length}} Reviews</span>
+    </div>
+  </div>
+  <hr>
+
+
+  <div class="row">
+    <div class="col-md-12"><br>
+      <h4>About {{ user.name }}:</h4>
+      <p>{{ user.description }}</p>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Reviews about {{ user.name }}</h3><br><br>
+    </div>
+  </div>
+
+  <div *ngFor="let review of reviews" >
+    <div class="reviews">
+      <div class="row">
+        <div class="col-md-2">
+          <img src="https://s-media-cache-ak0.pinimg.com/564x/dd/49/dd/dd49dd83e894321a9402465c98ebc386.jpg" class ="img-responsive img-circle img-reviewer-custom" alt="">
+        </div>
+        <div class="col-md-7">
+          <h4>{{review.customer.name}}</h4>
+          <h5>{{review.evaluation}}</h5>
+          <br>
+          <rating [(ngModel)]="review.rating" [max]="max" [readonly]="true"></rating>&nbsp;&nbsp;<span>{{reviews.length}}</span>&nbsp;&nbsp;<span>Reviews</span>
+        </div>
+        <div class="col-md-3">
+          <h5>{{review.created_at | date:'d/M/yy hh:mm:ss'}}</h5>
+        </div>
+        <br>
+      </div>
+      <hr>
+    </div>
+
+
+    <!--
+    <div class="panel-custom-content2 text-justify">
+
+    <div class="col-md-2">
+    <img src="https://s-media-cache-ak0.pinimg.com/564x/dd/49/dd/dd49dd83e894321a9402465c98ebc386.jpg" class ="img-responsive img-thumbnail img-reviewer-custom" alt="">
+  </div>
+  <div class="col-md-7">
+  <h5>{{review.customer.name}}</h5>
+  <h5>{{review.evaluation}}</h5>
+  <rating [(ngModel)]="review.rating" [max]="max" [readonly]="true"></rating>&nbsp;&nbsp;<span>{{reviews.length}}</span>&nbsp;&nbsp;<span>Reviews</span>
+</div>
+<div class="col-md-3">
+<h5>{{review.created_at}}</h5>
+</div>
+<hr>
+<br>
+
+</div> -->
+
+
+
+</div>
+
+
+
+
+
+
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{ user.price }}€ per hour</h4>
+        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <label>When do you need help</label><br><br>
+          <div class="form-inline">
+            Date: <input class="form-control" style="width:170px;" [(ngModel)]="newBooking.date" type="date" name="date"><br><br>
+            Time: <input class="form-control" style="width:167px;" [(ngModel)]="newBooking.starttime" type="time" name="starttime"><br>
+          </div><br>
+
+
+          <!-- First field of subject -->
+          <label> Select the field where you need help: </label>
+          <select [(ngModel)]="newBooking.mainSubject" (change)="showField($event.target.value)" class="form-control" name="mainSubject">
+            <option>Select Option</option>
+            <option *ngFor="let field of user.speciality"  [ngValue]="field" >{{field}}</option>
+          </select><br>
+
+
+          <!-- Fields of the sub-subject -->
+          <div *ngIf="field === undefined">
+            <alert type="info">
+              You need to select a field of specialization
+            </alert>
+          </div>
+
+          <div *ngIf="newBooking.mainSubject === 'Computer'">
+            <label> Choose a specialization: </label>
+            <select class="form-control" id="search-method" [(ngModel)]="newBooking.subSubject" name="subSubject">
+              <option *ngFor="let field of ['Hardware', 'Software', 'Windows', 'Apple', 'Peripherals', 'Hard Drive']" [ngValue]="field" >{{field}}</option>
+            </select><br>
+          </div>
+          <div *ngIf="newBooking.mainSubject === 'Internet'">
+            <label> Choose a specialization: </label>
+            <select class="form-control" id="search-method" [(ngModel)]="newBooking.subSubject" name="subSubject">
+              <option *ngFor="let field of ['Wi-fi', 'Ethernet', 'Router']" [ngValue]="field" >{{field}}</option>
+            </select><br>
+          </div>
+          <div *ngIf="newBooking.mainSubject === 'Phone'">
+            <label> Choose a specialization: </label>
+            <select class="form-control" id="search-method" [(ngModel)]="newBooking.subSubject" name="subSubject">
+              <option *ngFor="let field of ['Android', 'Iphone']"  [ngValue]="field" >{{field}}</option>
+            </select><br>
+          </div>
+          <div *ngIf="newBooking.mainSubject === 'TV'">
+            <label> Choose a specialization: </label>
+            <select class="form-control" id="search-method" [(ngModel)]="newBooking.subSubject" name="subSubject">
+              <option *ngFor="let field of ['Channel tunning', 'Pay-per-view Services', 'Smart TV']" [ngValue]="field" >{{field}}</option>
+            </select><br>
+          </div>
+
+
+          <label> Subject</label>
+          <input type="text" class="form-control" [(ngModel)]="newBooking.issue" name="issue"><br>
+
+          <label> Explain your problem <span class="small">(Please provide as many details as possible)</span> </label>
+          <textarea class="form-control" rows="9" [(ngModel)]="newBooking.message" name="message"></textarea><br>
+
+          <!-- <label> Upload a picture of your problem if needed: </label>
+          <input type="file" name="file" ng2FileSelect [uploader]="uploader" /> -->
+          <br>
+          <input type="hidden" class="form-control"  [(ngModel)]="newBooking.helper" name="helper"><br>
+          <button type="submit" class="btn btn-primary" (click)="booking()">Book {{ user.name }}</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

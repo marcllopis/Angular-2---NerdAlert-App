@@ -1,0 +1,44 @@
+#map {
+  height: 100%;
+  width: 100%;
+ }
+
+ .map-view{
+   height: 82vh;
+   background-color: white;
+ }
+
+ .scrolling-custom{
+   height: 100vh;
+   overflow:auto;
+   height: 82vh;
+
+ }
+
+.marg-tocenter-custom{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.lenght-input-custom{
+  width: 90%;
+}
+
+.img-helper-custom {
+  width: 120px;
+  height: 110px;
+}
+/*
+hr {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}*/
+
+.icon-custom{
+  width: 25px;
+  height: auto;
+}

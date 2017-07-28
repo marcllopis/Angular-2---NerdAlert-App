@@ -1,0 +1,210 @@
+<div style="height:50px;"></div>
+
+<div class="container">
+
+  <!-- Costumer information -->
+
+<!--
+  <div *ngIf="user.role === 'HELPER'">HELPEEEER</div>
+
+  <div *ngIf="user.role === 'CUSTOMER'">CUSTOMERRRRRR</div> -->
+
+  <tabset>
+
+    <tab heading="Your Information">
+
+
+
+    <div class="container-fluid">
+      <div class="row" style="margin-top:30px;">
+        <div class="col-md-4" >
+          <div class="panel-custom">
+
+            <img class="img-responsive center-custom" [src]='user.profilePic'>
+            <div class="center-user-info">
+              <h4>{{user.name}} <span class="small">{{user.surname}}</span></h4>
+              <h4>{{user.surname}}</h4>
+              <h4>{{user.email}}</h4>
+              <h4>{{user.phoneNumber}}</h4>
+              <h5>{{user.address}}</h5>
+            </div>
+
+
+          </div>
+          <!-- PICTURE AND CONTACT INFO -->
+
+
+        </div>
+
+        <div class="col-md-8">
+          <!-- PERSONAL INFO AND BOOKINGS -->
+          <div class="user-info-helper-header">
+            <h4>HEADER IF YOU ARE HELPER</h4>
+          </div>
+          <div class="panel-custom-content text-justify">
+              <h5>About:</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur quis, asperiores ex earum expedita id molestiae eligendi sint delectus quisquam modi quia maiores repellat autem laboriosam cupiditate sapiente dignissimos temporibus!</p>
+              <h5>SLOGAN</h5>
+              <h5>SPECIALITY</h5>
+              <h5>PRICE</h5>
+              <h5>STATUS</h5>
+          </div>
+          <br><br>
+          <div class="user-info-helper-header">
+            <h4>People you have booked</h4>
+          </div>
+          <div class="panel-custom-content2 text-justify">
+
+            <div class="col-md-2">
+              <img class="img-responsive img-circle img-helper-custom" [src]='user.profilePic'>
+            </div>
+            <div class="col-md-7">
+              <h5>SLOGAN</h5>
+              <h5>NAME</h5>
+              <h5>RATING</h5>
+            </div>
+            <div class="col-md-3">
+              <h5>PRICE</h5>
+              <br>
+              <button class="btn btn-primary">Contact again</button>
+            </div>
+            <hr>
+            <br>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+<!-- EDIT PART -->
+
+    </tab>
+    <tab heading="Edit Profile">
+
+      <div class="container-fluid">
+
+
+
+
+
+
+          <div class="row" style="margin-top:30px;">
+            <div class="col-md-4" >
+              <div class="panel-custom">
+
+                <img class="img-responsive center-custom" [src]='user.profilePic'>
+                <div class="form-group">
+                  <label> Update a different image </label>
+                  <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+                </div>
+
+
+              </div>
+              <!-- PICTURE AND CONTACT INFO -->
+
+
+            </div>
+
+            <div class="col-md-8">
+              <!-- PERSONAL INFO AND BOOKINGS -->
+
+
+
+                      <div class="panel panel-default">
+                        <div class="panel-body">
+                          <form>
+                            <fieldset>
+                              <div class="form-group">
+                                <label for="nameInput">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Name" [(ngModel)]="newUser.name" name="name">
+                              </div>
+                              <div class="form-group">
+                                <label for="surnameInput">Surname</label>
+                                <input type="text" class="form-control" id="surname" placeholder="Surname" [(ngModel)]="newUser.surname" name="surname">
+                              </div>
+                              <div class="form-group">
+                                <label for="InputEmail">Email</label>
+                                <input type="text" class="form-control" id="InputEmail" placeholder="Email" [(ngModel)]="newUser.email" name="email">
+                              </div>
+                              <div class="form-group">
+                                <label for="InputEmail">Phonenumber</label>
+                                <input type="text" class="form-control" id="InputphoneNumber" placeholder="Email" [(ngModel)]="newUser.phoneNumber" name="phoneNumber">
+                              </div>
+                              <div class="form-group">
+                                <label for="addressInput">Address</label>
+                                <input type="text" id="searchTextField" class="form-control" placeholder="Full address">
+                              </div>
+                              <div class="form-group">
+                                <input type="hidden" id="address"   class="form-control" placeholder="address" [(ngModel)]="newUser.address" name="address">
+                              </div>
+                              <div class="form-group">
+                                <input  type="hidden" id="lat"   class="form-control" placeholder="lat" [(ngModel)]="newUser.lat" name="lat">
+                              </div>
+                              <div class="form-group">
+                                <input type="hidden" id="long" class="form-control" placeholder="long" [(ngModel)]="newUser.long" name="long">
+                              </div>
+                              <div class="form-group">
+                                <label for="rolInput">Please select your role</label>
+                                <!-- <input  list="roles"> -->
+                                <select class="form-control" [(ngModel)]="newUser.role" name="role" >
+                                  <option value="CUSTOMER">I'm looking for help </option>
+                                  <option value="HELPER">I will give support </option>
+                                  <option value="BOTH">I'm looking for help and will give support </option>
+                                </select>
+                                <!-- id="role" type="text" class="form-control" placeholder="Rol" name="rol"> -->
+                              </div>
+
+                              <input type="hidden" [(ngModel)]="newUser._id" name="id" />
+                              <div *ngIf="user.role === 'HELPER'">
+                                <div class="form-group">
+                                  <label for="Inputdescription">Description</label>
+                                  <input type="text" class="form-control" id="Inputdescriptionl" placeholder="Description" [(ngModel)]="newUser.description" name="description">
+                                </div>
+                                <div class="form-group">
+                                  <label for="Inputslogan">Slogan</label>
+                                  <input type="text" class="form-control" id="InputSlogan" placeholder="slogan" [(ngModel)]="newUser.slogan" name="slogan">
+                                </div>
+                                <div class="form-group">
+                                  <label for="Inputstatus">Status</label>
+                                  <input type="text" class="form-control" id="InputStatus" placeholder="status" [(ngModel)]="newUser.status" name="status">
+                                </div>
+                                <!-- <div class="form-group">
+                                  <label for="InputPrice">Price</label>
+                                  <input type="number" class="form-control" id="InputPrice" placeholder="price" [(ngModel)]="newUser.price" name="price">
+                                </div> -->
+                                <div class="form-group">
+                                  <label for="Inputspeciality">Speciality</label>
+                                  <input type="text" class="form-control" id="InputSpeciality" placeholder="speciality" [(ngModel)]="newUser.speciality" name="speciality">
+                                </div>
+                              </div>
+                            </fieldset>
+                            <button (click)="submit()" class="btn btn-primary btn-block"> Edit </button>
+                          </form>
+                        </div>
+                      </div>
+
+
+            </div>
+
+          </div>
+
+
+
+
+
+
+
+
+      </div>
+    </tab>
+
+  </tabset>
+
+
+</div>

@@ -1,0 +1,53 @@
+.panel-custom{
+  border: 1px solid #dce0e0;
+  background-color: #fff;
+}
+
+.center-custom{
+  text-align:center;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.center-user-info{
+  margin-left:10%;
+  margin-top:20px;
+}
+
+.user-info-helper-header{
+  background-color: #f2f2f2;
+  margin:0;
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-left: 30px;
+  height:50px;
+}
+
+.panel-info-custom{
+  border: 1px solid #dce0e0;
+  background-color: #fff;
+  border-top: 0px;
+}
+
+.panel-custom-content{
+  border: 1px solid #dce0e0;
+  background-color: #fff;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.panel-custom-content2{
+  border: 1px solid #dce0e0;
+  background-color: #fff;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  display:block;
+  overflow:auto;
+}
+
+.img-helper-custom{
+  width: 80px;
+  height: auto;
+}

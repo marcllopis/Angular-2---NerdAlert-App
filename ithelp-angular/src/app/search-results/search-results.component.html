@@ -1,0 +1,87 @@
+<div style="height:60px;"></div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Users part -->
+      <div class="row marg-tocenter-custom">
+        <!-- Filters checkbox -->
+
+        <div class="form-group" style="margin-top:10px; border-bottom-style: inset; padding-bottom:10px;">
+
+
+
+
+          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <input value="Computer"  [checked]="computerActive" type="checkbox"
+            (click)="$event.target.checked? addFilters($event) : removeFilters($event)"> &nbsp;&nbsp;&nbsp;<img class="icon-custom" src="http://localhost:3000/icons/computer.png" alt="computer">&nbsp;&nbsp;&nbsp;Computer&nbsp;&nbsp;&nbsp;
+          </label>
+          <label>
+            <input value="Internet" [checked]="internetActive" type="checkbox"
+            (click)="$event.target.checked? addFilters($event) : removeFilters($event)">  &nbsp;&nbsp;&nbsp;<img class="icon-custom" src="http://localhost:3000/icons/internet.png" alt="computer">&nbsp;&nbsp;&nbsp;Internet&nbsp;&nbsp;&nbsp;
+          </label>
+          <label>
+            <input value="Phone" [checked]="phoneActive" type="checkbox"
+            (click)="$event.target.checked? addFilters($event) : removeFilters($event)">  &nbsp;&nbsp;&nbsp;<img class="icon-custom" src="http://localhost:3000/icons/phone.png" alt="computer">&nbsp;&nbsp;&nbsp;Phone&nbsp;&nbsp;&nbsp;
+          </label>
+          <label>
+            <input value="TV" [checked]="tvActive" type="checkbox"
+            (click)="$event.target.checked? addFilters($event) : removeFilters($event)">  &nbsp;&nbsp;&nbsp;<img class="icon-custom" src="http://localhost:3000/icons/tv.png" alt="computer">&nbsp;&nbsp;&nbsp;TV&nbsp;&nbsp;&nbsp;
+
+          </label>
+          <label>
+            <input value="Other" [checked]="otherActive" type="checkbox"
+            (click)="$event.target.checked? addFilters($event) : removeFilters($event)">  &nbsp;&nbsp;&nbsp;Other&nbsp;&nbsp;&nbsp;
+          </label>
+
+        </div>
+      </div>
+
+      <!-- <div class="row scrolling-custom marg-tocenter-custom"> -->
+      <!-- List of Users -->
+      <div class="row scrolling-custom" style="margin-left:20px; margin-right:20px;">
+
+        <div *ngFor="let user of users | filter:filters">
+          <div *ngIf="user.role == 'HELPER'">
+              <div class="row">
+                <div class="col-md-3">
+                  <img [src]="user.profilePic" class ="img-responsive img-circle img-helper-custom"  >
+                </div>
+                <div class="col-md-6">
+                  <h4 style="color:#286090;"> {{ user.name }} </h4>
+                  <h3> {{ user.slogan }}</h3>
+                  <rating style= "color: #ffd081; font-size: 18px;" [ngModel]="totalScore(user)" [max]="max" [readonly]="true"></rating><span>{{user.reviews.length}} Reviews</span><br><br>
+                </div>
+                <div class="col-md-3">
+                  <h3> €{{ user.price }} <span class="small">/hour</span></h3>
+                  <br>
+                  <button class="btn btn-lg btn-primary"><a style="text-decoration: none; color: white;" [routerLink]="['/search', user._id]">Contact</a></button>
+                </div>
+              </div>
+              <hr>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <!-- Map part -->
+      <div class="row">
+        <!-- Input field for search -->
+
+        <div class="form-group" >
+          <input type="text" style="padding-left:30px;" id="searchLocation" class="form-control lenght-input-custom" placeholder="{{address}}" name="location">
+        </div>
+
+      </div>
+
+      <div class="row map-view">
+        <!-- Map -->
+        <div id="map" style="position:absolute; height:100%; padding:0; margin:0;"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
